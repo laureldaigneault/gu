@@ -9,15 +9,6 @@ Git is powerful, but some daily workflows are noisy:
 
 `gu` exists to make those moments feel **fast, clean, and low‑stress**—without hiding what’s happening.
 
----
-
-## Why `gu` exists
-
-Git is an expert tool. Most of us don’t need *more* power—we need:
-- **less friction** for everyday tasks
-- **guardrails** (avoid deleting the wrong thing)
-- **UX that matches what we’re trying to do**
-
 `gu` is intentionally small and focused. It’s designed to be:
 - **Interactive** (checkboxes, confirmations)
 - **Safe by default**
@@ -50,7 +41,10 @@ Stores secrets locally so you don’t need dotenv:
 
 ## Installation (macOS)
 
-`gu` is distributed as a zip containing:
+Releases are published as a **zip asset** on GitHub.  
+Grab the latest `gu-macos.zip` from the repo’s **GitHub Releases** page, unzip it, then run the installer.
+
+The release zip contains:
 - `gu-macos-universal`
 - `gu-macos-arm64`
 - `gu-macos-x64`
@@ -59,7 +53,7 @@ Stores secrets locally so you don’t need dotenv:
 
 ### Install
 
-1) Download + unzip the release zip  
+1) Download + unzip the release zip from **GitHub Releases**  
 2) Run the installer:
 
 ```bash
@@ -219,10 +213,3 @@ A few directions `gu` could grow:
 - optional AI-assisted summaries (opt-in)
 
 (Keeping the tool small and ergonomic is the goal.)
-
----
-
-## License
-
-Choose whatever fits your repo (MIT/Apache-2.0/etc.).  
-Add a `LICENSE` file when you’re ready.
