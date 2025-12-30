@@ -27,7 +27,7 @@ const MENU: MenuItem[] = [
 
 const app = new Command()
   .name("gu")
-  .version("0.1.0")
+  .version("0.3.0")
   .description("Git utilities");
 
 const menuCmd = new Command()

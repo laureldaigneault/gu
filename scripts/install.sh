@@ -155,17 +155,26 @@ fi
 EOF
 }
 
+# ✅ macOS Terminal often launches login shells → ~/.zprofile is key
+TARGET_RCS=(
+  "$HOME/.zprofile"
+  "$HOME/.zshrc"
+  "$HOME/.bash_profile"
+  "$HOME/.bashrc"
+  "$HOME/.profile"
+)
+
 case ":$PATH:" in
   *":$HOME/.local/bin:"*) ;;
   *)
     echo "🧩 Adding ~/.local/bin to PATH in your shell rc files..."
-    ensure_path_block "$HOME/.zshrc"
-    ensure_path_block "$HOME/.bash_profile"
-    ensure_path_block "$HOME/.bashrc"
+    for rc in "${TARGET_RCS[@]}"; do
+      ensure_path_block "$rc"
+    done
     ;;
 esac
 
-# Make it available RIGHT NOW in the current shell session (this script process)
+# Make it available RIGHT NOW in the current shell process (this script process)
 export PATH="$HOME/.local/bin:$PATH"
 
 echo
@@ -187,19 +196,23 @@ echo
 echo "IMPORTANT:"
 echo "You ran this installer via 'bash install.sh'."
 echo "That means PATH changes were written to your shell rc files,"
-echo "but your *current* terminal session won't see them until you reload."
+echo "but your *current* terminal session won't automatically pick them up."
 echo
-echo "Run ONE of these now:"
+echo "To enable 'gu' in THIS terminal immediately, run one of:"
 echo
-echo "  # zsh (most macOS users)"
-echo "  source ~/.zshrc && rehash"
+echo "  # zsh (common on macOS)"
+echo "  source ~/.zprofile 2>/dev/null || true"
+echo "  source ~/.zshrc 2>/dev/null || true"
+echo "  rehash 2>/dev/null || true"
 echo
 echo "  # bash"
-echo "  source ~/.bash_profile && hash -r"
-echo "  # or: source ~/.bashrc && hash -r"
+echo "  source ~/.bash_profile 2>/dev/null || true"
+echo "  source ~/.bashrc 2>/dev/null || true"
+echo "  hash -r 2>/dev/null || true"
+echo
+echo "Or minimal (works anywhere):"
+echo "  export PATH=\"\$HOME/.local/bin:\$PATH\""
 echo
 echo "Then try:"
+echo "  command -v gu"
 echo "  gu --help"
-echo "  gu configure"
-echo "  gu clean-branches"
-echo "  gu commit"

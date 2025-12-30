@@ -30,4 +30,23 @@ fi
 echo "🛠  Running installer (auto-detect)…"
 bash "$INSTALL"
 
+echo
+echo "🔎 Post-install checks:"
+echo "  Installed binary should be at: $HOME/.local/bin/gu"
+if [[ -f "$HOME/.local/bin/gu" ]]; then
+  ls -lh "$HOME/.local/bin/gu"
+else
+  echo "  ❌ Not found at $HOME/.local/bin/gu"
+fi
+
+echo
+if echo ":$PATH:" | grep -q ":$HOME/.local/bin:"; then
+  echo "✅ ~/.local/bin is already on PATH in this shell."
+else
+  echo "⚠️  ~/.local/bin is NOT on PATH in this shell."
+  echo "   Run (zsh):  source ~/.zprofile && source ~/.zshrc && rehash"
+  echo "   Or minimal: export PATH=\"\$HOME/.local/bin:\$PATH\""
+fi
+
+echo
 echo "✅ Done."
