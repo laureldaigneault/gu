@@ -1,6 +1,5 @@
 import { Command } from "@cliffy/command";
 import { Confirm, Input } from "@cliffy/prompt";
-import { loadDotenv } from "../env.ts";
 import { git, inGitRepo } from "../git.ts";
 
 function formatNameStatus(nameStatusText: string) {
@@ -30,8 +29,6 @@ export const commitCmd = new Command()
   .option("--amend", "Pass --amend to git commit.")
   .option("--signoff", "Pass --signoff to git commit.")
   .action(async (opts) => {
-    await loadDotenv();
-
     if (!(await inGitRepo())) {
       console.error("Not inside a git repo.");
       Deno.exit(1);

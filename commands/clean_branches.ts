@@ -1,6 +1,5 @@
 import { Command } from "@cliffy/command";
 import { Checkbox, Confirm } from "@cliffy/prompt";
-import { loadDotenv } from "../env.ts";
 import { git, inGitRepo } from "../git.ts";
 import { getGithubToken } from "../config.ts";
 
@@ -43,8 +42,6 @@ export const cleanBranchesCmd = new Command()
   .option("--repo <ownerRepo:string>", "Override repo for PR lookup (owner/repo).")
   .option("--protected <names:string>", "Comma-separated protected branches (default: main,master,integration,develop).")
   .action(async (opts) => {
-    await loadDotenv();
-
     if (!(await inGitRepo())) {
       console.error("Not inside a git repo.");
       Deno.exit(1);
