@@ -5,7 +5,8 @@
     "lint": "deno lint",
     "check": "deno check gu.ts",
     "build:mac": "./scripts/build_macos.sh",
-    "release:mac": "./scripts/release_macos.sh"
+    "release:mac": "./scripts/release_macos.sh",
+    "dev:install": "./scripts/dev_release_install.sh"
   },
   "imports": {
     "@cliffy/command": "jsr:@cliffy/command@^1.0.0-rc.8",
